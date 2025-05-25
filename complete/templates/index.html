@@ -1,0 +1,91 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predict Mood</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+  <div class="container">
+    <h2>Wellbeing Mood Predictor</h2>
+    <form id="predictForm">
+
+      <select name="age" required>
+        <option value="">Age Group</option>
+        <option>18-25</option><option>26-35</option><option>36-50</option><option>50+</option>
+      </select>
+
+      <select name="gender" required>
+        <option value="">Gender</option>
+        <option>Male</option><option>Female</option><option>Other</option>
+      </select>
+
+      <select name="routine" required>
+        <option value="">Daily Routine</option>
+        <option>Very Busy</option><option>Somewhat Busy</option><option>Relaxed</option>
+      </select>
+
+      <select name="stress" required>
+        <option value="">Stress Frequency</option>
+        <option>Never</option><option>Occasionally</option><option>Almost Daily</option><option>Daily</option>
+      </select>
+
+      <select name="life" required>
+        <option value="">Life Satisfaction</option>
+        <option>Satisfied</option><option>Neutral</option><option>Dissatisfied</option>
+      </select>
+
+      <select name="work" required>
+        <option value="">Work Feeling</option>
+        <option>Motivated</option><option>Bored</option><option>Not Applicable</option>
+      </select>
+
+      <select name="study" required>
+        <option value="">Study Feeling</option>
+        <option>Motivated</option><option>Bored</option><option>Not Applicable</option>
+      </select>
+
+      <select name="social" required>
+        <option value="">Social Life</option>
+        <option>Very Social</option><option>Neutral</option><option>Lonely</option>
+      </select>
+
+      <select name="media" required>
+        <option value="">Social Media Effect</option>
+        <option>Inspired</option><option>Anxious</option><option>Relaxed</option>
+      </select>
+
+      <select name="support" required>
+        <option value="">Lifestyle Supportive</option>
+        <option>Yes</option><option>No</option><option>Somewhat</option>
+      </select>
+
+      <select name="change" required>
+        <option value="">Willingness to Change</option>
+        <option>Very Likely</option><option>Somewhat Likely</option><option>Very Unlikely</option>
+      </select>
+
+      <button type="submit">Predict Mood</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById("predictForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      fetch("/predict", {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("result").innerText = data.prediction ? `Predicted Mood: ${data.prediction}` : `Error: ${data.error}`;
+      });
+    });
+  </script>
+</body>
+</html>
