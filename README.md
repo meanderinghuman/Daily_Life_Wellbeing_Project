@@ -85,5 +85,5 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ## 🙌 Acknowledgements
 
-- Developed as part of a Data Mining and Warehousing Course at Manipal University Jaipur .
+- Developed as part of a Data Mining and Warehousing Course (IT3240) at Manipal University Jaipur .
 - Dataset curated by Siddharth Pal , Siddhant Jaiswal , Mohammad Faraz Alam and Raahim Arora .
